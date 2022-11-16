@@ -1,20 +1,20 @@
 import React from "react";
 const md5 = require('md5');
-import {Formik} from "formik";
-import {Form, Input} from "antd";
+import { Formik } from "formik";
+import { Form, Input } from "antd";
 import * as Yup from "yup";
 import css from 'styled-jsx/css'
 
-import {LoadingIcon} from "@app/components/core/loading-icon";
+import { LoadingIcon } from "@app/components/core/loading-icon";
 import Container from "@app/components/core/container";
 import Row from "@app/components/core/row";
 import Col from "@app/components/core/col";
 import UIButton from "@app/components/core/button";
-import {withRouter} from "react-router";
-import {auth, firestore} from "@app/services/firebase";
-import {LocalStore} from "@app/utils/local-storage";
-import {firebaseConfig} from "@app/configs";
-import {LoadingPage} from "@app/components/core/loading";
+import { withRouter } from "react-router";
+import { auth, firestore } from "@app/services/firebase";
+import { LocalStore } from "@app/utils/local-storage";
+import { firebaseConfig } from "@app/configs";
+import { LoadingPage } from "@app/components/core/loading";
 import Layout from "@app/components/layout";
 
 const styles = css.global`
@@ -44,7 +44,7 @@ const styles = css.global`
   }
 `
 
-const Admin = ({location, history}) => {
+const Admin = ({ location, history }) => {
   const [error, setError] = React.useState("")
   const [success, setSuccess] = React.useState("")
   const [isLoading, setLoading] = React.useState(false)
@@ -113,10 +113,10 @@ const Admin = ({location, history}) => {
       })
   }
 
-  const removeError = ({errors, name, setErrors}) => {
-    const newErrors = {...errors};
+  const removeError = ({ errors, name, setErrors }) => {
+    const newErrors = { ...errors };
     delete newErrors?.[name];
-    setErrors({...newErrors});
+    setErrors({ ...newErrors });
   };
 
   const createAdsDumData = () => {
@@ -161,7 +161,7 @@ const Admin = ({location, history}) => {
     const arr = [
       {
         duration: "Monthly",
-        packageId: "app.witwork.strongvpn.monthly",
+        packageId: "app.witwork.ovovpn.monthly",
         packageName: "Gold Monthly",
         packagePricing: "9.99",
         platform: "iOS"
@@ -182,7 +182,7 @@ const Admin = ({location, history}) => {
       },
       {
         duration: "Yearly",
-        packageId: "app.witwork.strongvpn.yearly",
+        packageId: "app.witwork.ovovpn.yearly",
         packageName: "Gold Status Yearly",
         packagePricing: "99.99",
         platform: "iOS"
@@ -211,7 +211,7 @@ const Admin = ({location, history}) => {
     <Layout title="Admin" className="login flex justify-center h-screen">
       <Container>
         <Row>
-          <Col className="col-sm-3"/>
+          <Col className="col-sm-3" />
           <Col className="col-sm-6">
             <div className="login-content">
               <Formik
@@ -245,7 +245,7 @@ const Admin = ({location, history}) => {
                             name={fields.first_name}
                             placeholder="First name"
                             value={values[fields.first_name]}
-                            onChange={({target: {value}}) => {
+                            onChange={({ target: { value } }) => {
                               setFieldValue(fields.first_name, value, false);
                               removeError({
                                 errors,
@@ -266,7 +266,7 @@ const Admin = ({location, history}) => {
                             name={fields.last_name}
                             placeholder="Last name"
                             value={values[fields.last_name]}
-                            onChange={({target: {value}}) => {
+                            onChange={({ target: { value } }) => {
                               setFieldValue(fields.last_name, value, false);
                               removeError({
                                 errors,
@@ -288,7 +288,7 @@ const Admin = ({location, history}) => {
                           name={fields.email}
                           placeholder="email@example.com"
                           value={values[fields.email]}
-                          onChange={({target: {value}}) => {
+                          onChange={({ target: { value } }) => {
                             setFieldValue(fields.email, value, false);
                             removeError({
                               errors,
@@ -311,7 +311,7 @@ const Admin = ({location, history}) => {
                           name={fields.password}
                           placeholder="*****"
                           value={values[fields.password]}
-                          onChange={({target: {value}}) => {
+                          onChange={({ target: { value } }) => {
                             setFieldValue(fields.password, value, false);
                             removeError({
                               errors,
@@ -335,7 +335,7 @@ const Admin = ({location, history}) => {
                           name={fields.passwordConfirm}
                           placeholder="*****"
                           value={values[fields.passwordConfirm]}
-                          onChange={({target: {value}}) => {
+                          onChange={({ target: { value } }) => {
                             setFieldValue(fields.passwordConfirm, value, false);
                             removeError({
                               errors,
@@ -350,7 +350,7 @@ const Admin = ({location, history}) => {
                           disabled={isLoading}
                           htmlType="submit"
                           className="third capitalize filled-error w-1/3">
-                          {isLoading && <LoadingIcon/>}
+                          {isLoading && <LoadingIcon />}
                           save change
                         </UIButton>
                       </div>
@@ -363,17 +363,17 @@ const Admin = ({location, history}) => {
               error && (
                 <div className="core-alert flex items-center">
                   <div>
-                    <i className="far fa-exclamation-triangle"/>
+                    <i className="far fa-exclamation-triangle" />
                   </div>
                   <div>{error}</div>
                 </div>
               )
             }
           </Col>
-          <Col className="col-sm-3"/>
+          <Col className="col-sm-3" />
         </Row>
       </Container>
-      {isPageLoading && <LoadingPage/>}
+      {isPageLoading && <LoadingPage />}
       <style jsx>{styles}</style>
     </Layout>
   )

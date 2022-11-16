@@ -1,22 +1,22 @@
 import React from "react";
-import {Formik} from "formik";
-import {Form, Input} from "antd";
+import { Formik } from "formik";
+import { Form, Input } from "antd";
 import * as Yup from "yup";
 import css from 'styled-jsx/css'
-import {Link} from "react-router-dom";
-import {withRouter} from "react-router";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
-import {LoadingIcon} from "@app/components/core/loading-icon";
+import { LoadingIcon } from "@app/components/core/loading-icon";
 import Container from "@app/components/core/container";
 import Row from "@app/components/core/row";
 import Col from "@app/components/core/col";
 import UIButton from "@app/components/core/button";
-import {LocalStore} from "@app/utils/local-storage";
+import { LocalStore } from "@app/utils/local-storage";
 import Layout from "@app/components/layout";
-import {POST} from "@app/request";
-import {envName} from "@app/configs";
-import {loadUser} from "@app/redux/actions";
-import {connect} from "react-redux";
+import { POST } from "@app/request";
+import { envName } from "@app/configs";
+import { loadUser } from "@app/redux/actions";
+import { connect } from "react-redux";
 
 const styles = css.global`
   .login {
@@ -45,7 +45,7 @@ const styles = css.global`
   }
 `
 
-const Login = ({location, history, loadUser, ...props}) => {
+const Login = ({ location, history, loadUser, ...props }) => {
   const [error, setError] = React.useState("")
   const [isLoading, setLoading] = React.useState(false)
   const fields = {
@@ -54,7 +54,7 @@ const Login = ({location, history, loadUser, ...props}) => {
   };
 
   const initialValues = {
-    [fields.email]: "hello@witwork.app",
+    [fields.email]: "hello@ovovpn.app",
     [fields.password]: "WitWorkApp",
   };
 
@@ -87,17 +87,17 @@ const Login = ({location, history, loadUser, ...props}) => {
       })
   }
 
-  const removeError = ({errors, name, setErrors}) => {
-    const newErrors = {...errors};
+  const removeError = ({ errors, name, setErrors }) => {
+    const newErrors = { ...errors };
     delete newErrors?.[name];
-    setErrors({...newErrors});
+    setErrors({ ...newErrors });
   };
 
   return (
     <Layout title="Login" className="login flex justify-center h-screen">
       <Container>
         <Row>
-          <Col className="col-sm-3"/>
+          <Col className="col-sm-3" />
           <Col className="col-sm-6">
             <div className="login-content">
               <Formik
@@ -130,7 +130,7 @@ const Login = ({location, history, loadUser, ...props}) => {
                           name={fields.email}
                           placeholder="email@example.com"
                           value={values[fields.email]}
-                          onChange={({target: {value}}) => {
+                          onChange={({ target: { value } }) => {
                             setFieldValue(fields.email, value, false);
                             removeError({
                               errors,
@@ -153,7 +153,7 @@ const Login = ({location, history, loadUser, ...props}) => {
                           name={fields.password}
                           placeholder="*****"
                           value={values[fields.password]}
-                          onChange={({target: {value}}) => {
+                          onChange={({ target: { value } }) => {
                             setFieldValue(fields.password, value, false);
                             removeError({
                               errors,
@@ -168,7 +168,7 @@ const Login = ({location, history, loadUser, ...props}) => {
                           disabled={isLoading}
                           htmlType="submit"
                           className="third capitalize filled-error flex-1 mr-4">
-                          {isLoading && <LoadingIcon/>}
+                          {isLoading && <LoadingIcon />}
                           Login
                         </UIButton>
                         <Link to="/request-password" className=" flex-1">
@@ -187,14 +187,14 @@ const Login = ({location, history, loadUser, ...props}) => {
               error && (
                 <div className="core-alert flex items-center">
                   <div>
-                    <i className="far fa-exclamation-triangle"/>
+                    <i className="far fa-exclamation-triangle" />
                   </div>
                   <div>{error}</div>
                 </div>
               )
             }
           </Col>
-          <Col className="col-sm-3"/>
+          <Col className="col-sm-3" />
         </Row>
       </Container>
       <style jsx>{styles}</style>

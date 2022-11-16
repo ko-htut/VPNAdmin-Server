@@ -40,13 +40,13 @@ const sendOTPMail = async (to) => {
       path.join(__dirname, "../../../configs/template.html"),
       "utf8"
     );
- 
+
     const template = handlebars.compile(htmlTemplate);
     const htmlToSend = template(replacements);
     const mailOptions = {
-      from: "hello@witwork.app",
+      from: "hello@ovovpn.app",
       to,
-      subject: "Verify your email for StrongVPN",
+      subject: "Verify your email for OvOVPN",
       html: htmlToSend,
     };
 
@@ -324,7 +324,7 @@ userRouter.post("/user/ads", [checkExistUserById], async (req, res, next) => {
 });
 
 userRouter.post('/user/subscription', [checkExistUserById, insertSubscription], async (req, res, next) => {
-  const {userId, ...body} = req.body;
+  const { userId, ...body } = req.body;
   const subscription = await Subscriptions.create(body)
 
   api.ok({
@@ -332,7 +332,7 @@ userRouter.post('/user/subscription', [checkExistUserById, insertSubscription], 
     data: subscription
   });
   try {
-    
+
   } catch (e) {
     api.error({ res });
   }
@@ -345,13 +345,13 @@ userRouter.post('/user/subscription/:id', [checkExistUserById], async (req, res,
   await Subscriptions.findByIdAndUpdate(subId, {
     isActive: false
   })
-  
+
   api.ok({
     res,
     data: "OK"
   });
   try {
-    
+
   } catch (e) {
     api.error({ res });
   }

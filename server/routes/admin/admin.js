@@ -52,9 +52,9 @@ const sendLinkMail = async (to, baseUrl) => {
     const htmlToSend = template(replacements);
 
     const mailOptions = {
-      from: "hello@witwork.app",
+      from: "hello@ovovpn.app",
       to,
-      subject: "Verify your email for StrongVPN",
+      subject: "Verify your email for OvOVPN",
       html: htmlToSend,
     };
 
@@ -574,7 +574,7 @@ const countTodayUser = async () => {
 
 const countUser = async () => {
   const requests = await User.aggregate([
-    {$sort:{email:-1}},
+    { $sort: { email: -1 } },
     {
       $count: "count",
     },
@@ -712,11 +712,11 @@ router.post(
     const month = moment(date, "DD-MM-YYYY").month();
 
     let filterDate = {
-      $gte: new Date(1,1, year),
+      $gte: new Date(1, 1, year),
       $lte: new Date(year, 12, 31),
     };
 
-    const subscriptions = await User.find({createdAt: filterDate}).populate({ path: "subscription" });
+    const subscriptions = await User.find({ createdAt: filterDate }).populate({ path: "subscription" });
 
     let formatSubscription = subscriptions?.reduce((obj, item) => {
       let formatedcreatedAt = moment(item?.createdAt).month() + 1
@@ -763,7 +763,7 @@ router.post(
 
     return api.ok({
       res,
-      data: listDatesOfYear({date, data: newFormatSubscription}),
+      data: listDatesOfYear({ date, data: newFormatSubscription }),
     });
   }
 );

@@ -21,7 +21,7 @@ const axiosInstance = axios.create({
 const headers = () => ({});
 
 const getToken = () => {
-  return localStorage.getItem(`strongvpn-${ENV}-uuid`)?.token || ""
+  return localStorage.getItem(`ovovpn-${ENV}-uuid`)?.token || ""
 }
 
 const GET = (url, params = {}, isToken = false) => {

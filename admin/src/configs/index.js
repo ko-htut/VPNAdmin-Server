@@ -4,6 +4,6 @@ export const COLORS = {
   third: "#00cce0"
 }
 
-export const envName = `${process.env.APP_CODE || "strongvpn"}-${process.env.APP_ENV || "dev"}`
+export const envName = `${process.env.APP_CODE || "ovovpn"}-${process.env.APP_ENV || "dev"}`
 
 export const EMAIL = process.env.EMAIL

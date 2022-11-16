@@ -8,7 +8,7 @@ const configs = require("./configs/index");
 const usersRouter = require('./routes/app/user/index');
 const adminRouter = require('./routes/admin/admin');
 var cors = require('cors');
-var PORT = process.env.PORT || 3002 
+var PORT = process.env.PORT || 3002
 var app = express();
 // Connect to db
 configs.dbConnect();
@@ -32,47 +32,47 @@ router.use(function (req, res, next) {
   console.log('=========MIDDLE WARE=========')
   console.log('request path: ', req.url)
   console.log('request body: ', req.body)
-  var strHash     = req.body.hash;
+  var strHash = req.body.hash;
   var strUnixTime = req.body.time;
-  var crypto  = require('crypto');
-  var myhash  = strUnixTime + '|' + (process.env.SECRET_KEY || "WeB00st$%!erKK20Ty21")
+  var crypto = require('crypto');
+  var myhash = strUnixTime + '|' + (process.env.SECRET_KEY || "WeB00st$%!erKK20Ty21")
   var strMyHash = crypto.createHash('sha256').update(myhash).digest('hex');
-  var unixnow = Math.round(+new Date()/1000);
-  var timefinal = (unixnow-strUnixTime);
+  var unixnow = Math.round(+new Date() / 1000);
+  var timefinal = (unixnow - strUnixTime);
   if (process.env.ENV != "DEV") {
-    if(timefinal>60) {
-     return next(createError(401));
+    if (timefinal > 60) {
+      return next(createError(401));
     }
-    if(strMyHash != strHash) {
-     return next(createError(401));
+    if (strMyHash != strHash) {
+      return next(createError(401));
     }
   }
-  
-  const {body: { hash, time, bundleId, ...body }} = req
+
+  const { body: { hash, time, bundleId, ...body } } = req
   req.body = body
-  
+
   next()
 })
 
 app.use('/', router);
 app.use(errorHandler);
 
-router.use('/strongvpn/api', usersRouter);
-router.use('/strongvpn/api', adminRouter);
+router.use('/ovovpn/api', usersRouter);
+router.use('/ovovpn/api', adminRouter);
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-function errorHandler (err, req, res, next) {
+function errorHandler(err, req, res, next) {
   console.log('=========ERROR=========')
   console.log(err)
   res.status(500)
-  res.json({message: err, error: 1 })
+  res.json({ message: err, error: 1 })
 }
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.log('')
   // Set locals, only providing error in development
   res.locals.message = err.message;
@@ -80,11 +80,11 @@ app.use(function(err, req, res, next) {
 
   // Render the error page
   res.status(err.status || 500);
-  res.json({message: err, error: 1 })
+  res.json({ message: err, error: 1 })
 });
 
 
-app.listen(PORT, '0.0.0.0', function() {
+app.listen(PORT, '0.0.0.0', function () {
   console.log("... port %d in %s mode", PORT, 'prod');
 });
 module.exports = app;

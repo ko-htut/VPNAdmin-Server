@@ -129,20 +129,20 @@ clear
 cat > start_server.sh <<EOF
 cd server
 yarn
-NODE_ENV=production PORT=3002 SECRET_KEY='$shared_secret_key' pm2 start index.js --no-automation --name StrongVPN-API -- start
+NODE_ENV=production PORT=3002 SECRET_KEY='$shared_secret_key' pm2 start index.js --no-automation --name OvOVPN-API -- start
 EOF
 
 #CREATE STARTING SCRIPT ADMIN
 cat > .env <<EOF
 HASH_CODE=$shared_secret_key
-API='http://$public_ip:3002/strongvpn/api'
+API='http://$public_ip:3002/ovovpn/api'
 EOF
 mv .env ./admin/.env
 
 cat > start_admin.sh <<EOF
 cd admin
 yarn && yarn build
-NODE_ENV=production PORT=9002 pm2 start server/index.js --no-automation --name StrongVPN-Admin -- start
+NODE_ENV=production PORT=9002 pm2 start server/index.js --no-automation --name OvOVPN-Admin -- start
 EOF
 
 chmod +x start_server.sh
@@ -156,8 +156,8 @@ echo "
 #             Congratulations!                 #
 ################################################
 
-Your StrongVPN server is running.
-   1. API: http://$public_ip:3002/strongvpn/api
+Your OvOVPN server is running.
+   1. API: http://$public_ip:3002/ovovpn/api
    2. CMS Admin: http://$public_ip:9002/
    3. Shared Secret Key: $shared_secret_key
 "
